@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { BRAND } from "@/lib/brandData";
+import Wordmark from "@/components/Wordmark";
 
 const Footer = () => {
   return (
@@ -8,7 +9,7 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
           {/* Brand */}
           <div>
-            <span className="gradient-text text-3xl font-black tracking-widest block mb-3">SUNRISE</span>
+            <span className="block mb-3"><Wordmark base={32} /></span>
             <p className="text-background/60 text-sm tracking-wide">{BRAND.tagline}</p>
           </div>
 
