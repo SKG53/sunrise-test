@@ -1,6 +1,7 @@
 import { TIERS } from "@/lib/brandData";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import PotencyLockup from "@/components/PotencyLockup";
 
 const Products = () => {
   return (
@@ -23,9 +24,7 @@ const Products = () => {
           <div className="container mx-auto">
             {/* Tier header */}
             <div className="flex flex-col md:flex-row md:items-end gap-4 mb-12">
-              <div className={`${tier.bgClass} text-white px-6 py-3 inline-block`}>
-                <span className="text-3xl font-black tracking-wider">{tier.label}</span>
-              </div>
+              <PotencyLockup dose={tier.mg} base={80} />
               <div className="md:ml-4">
                 <p className="text-lg font-bold tracking-wider">{tier.tagline}</p>
                 <p className="text-foreground/50 text-sm max-w-lg">{tier.description}</p>
