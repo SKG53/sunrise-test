@@ -4,6 +4,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { Leaf, Shield, Droplets } from "lucide-react";
+import Wordmark from "@/components/Wordmark";
 
 const ICONS = [Leaf, Droplets, Shield];
 
@@ -14,8 +15,8 @@ const Index = () => {
 
       {/* Hero */}
       <section className="relative flex flex-col items-center justify-center text-center py-24 md:py-40 px-4">
-        <h1 className="gradient-text text-5xl md:text-8xl font-black tracking-widest mb-4">
-          SUNRISE
+        <h1 className="mb-4">
+          <Wordmark base={72} />
         </h1>
         <p className="text-foreground/70 text-lg md:text-xl tracking-[0.2em] font-light mb-2 uppercase">
           Hemp-Infused THC Seltzers

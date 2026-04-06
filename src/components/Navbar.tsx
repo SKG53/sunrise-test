@@ -3,6 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 import { Menu } from "lucide-react";
 import { Sheet, SheetContent, SheetTrigger, SheetTitle } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
+import Wordmark from "@/components/Wordmark";
 
 const NAV_LINKS = [
   { label: "Home", path: "/" },
@@ -19,7 +20,7 @@ const Navbar = () => {
     <nav className="sticky top-0 z-50 bg-background/95 backdrop-blur-sm border-b border-border">
       <div className="container mx-auto flex items-center justify-between h-16 px-4">
         <Link to="/" className="flex items-center gap-2">
-          <span className="gradient-text text-2xl font-black tracking-widest">SUNRISE</span>
+          <Wordmark base={24} />
         </Link>
 
         {/* Desktop nav */}
@@ -45,7 +46,7 @@ const Navbar = () => {
             </Button>
           </SheetTrigger>
           <SheetContent side="right" className="bg-background">
-            <SheetTitle className="gradient-text text-xl font-black tracking-widest mb-8">SUNRISE</SheetTitle>
+            <SheetTitle className="mb-8"><Wordmark base={24} /></SheetTitle>
             <div className="flex flex-col gap-6 mt-4">
               {NAV_LINKS.map((link) => (
                 <Link
