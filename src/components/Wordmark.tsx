@@ -2,7 +2,7 @@
  * SUNRISE Wordmark — Gradient on Cream
  * Based on wordmark.js spec. Verified scale range: 24px – 96px
  */
-const Wordmark = ({ base = 48 }: { base?: number }) => {
+const Wordmark = ({ base = 48, color = "gradient" }: { base?: number; color?: "gradient" | "cream" }) => {
   const tmSize = base * 0.375;
   const spacing = base * 0.125;
   const tmGap = base * -0.104;
@@ -19,11 +19,15 @@ const Wordmark = ({ base = 48 }: { base?: number }) => {
           letterSpacing: `${spacing}px`,
           textTransform: "uppercase",
           lineHeight: 1,
-          background:
-            "linear-gradient(90deg, #4F308D, #822665, #94264B, #BF252D, #CC382C, #DC531F, #E76B37)",
-          WebkitBackgroundClip: "text",
-          WebkitTextFillColor: "transparent",
-          backgroundClip: "text",
+          ...(color === "cream"
+            ? { color: "hsl(var(--background))" }
+            : {
+                background:
+                  "linear-gradient(90deg, #4F308D, #822665, #94264B, #BF252D, #CC382C, #DC531F, #E76B37)",
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent",
+                backgroundClip: "text",
+              }),
         }}
       >
         SUNRISE
@@ -34,7 +38,7 @@ const Wordmark = ({ base = 48 }: { base?: number }) => {
           fontFamily: "Montserrat, sans-serif",
           fontSize: `${tmSize}px`,
           fontWeight: 700,
-          color: "#E76B37",
+          color: color === "cream" ? "hsl(var(--background))" : "hsl(var(--tier-5))",
           lineHeight: 1,
           verticalAlign: "top",
           marginLeft: `${tmGap}px`,
