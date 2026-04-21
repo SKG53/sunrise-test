@@ -13,8 +13,7 @@ const Index = () => {
         <div className="hero-strip">
           {TIERS.map((tier, index) => (
             <div key={tier.mg} className={`hero-tier ${tier.bgClass}`}>
-              <img src={FEATURED_PRODUCTS[index].image} alt={`SUNRISE hemp-infused seltzer ${tier.label} lineup`} />
-              <div className="absolute bottom-5 left-5 text-[10px] font-black uppercase tracking-[0.2em] text-background/85">{tier.label} · {tier.shortName}</div>
+              <img src={FEATURED_PRODUCTS[index].image} alt={`SUNRISE hemp-infused seltzer ${tier.label} lineup`} className="opacity-85" />
             </div>
           ))}
         </div>
@@ -29,15 +28,13 @@ const Index = () => {
         <p className="site-subhead mt-6">We’re here to refresh the way the world drinks.</p>
       </section>
 
-      <section className="statement">
+      <section className="statement home-origin">
         <p className="statement-eyebrow">Origin</p>
-        <div className="grid gap-8 md:grid-cols-[0.9fr_1.1fr] md:items-end">
-          <div>
-            <h2 className="site-heading max-w-2xl">Born in the heart of America.</h2>
-            <p className="site-subhead mt-5">Founded along historic Route 66 and proudly family-owned, SUNRISE is built from beverage experience, natural flavor, and a belief that refreshment should feel bold and grounded.</p>
-          </div>
-          <div className="statement-media"><img src={FEATURED_PRODUCTS[2].image} alt="SUNRISE Peach Mango hemp-infused seltzer can" className="h-[260px] w-auto object-contain" /></div>
+        <div className="home-origin-copy">
+          <h2 className="site-heading max-w-2xl">Born in the heart of America.</h2>
+          <p className="site-subhead mt-5">Founded along historic Route 66 and proudly family-owned, SUNRISE is built from beverage experience, natural flavor, and a belief that refreshment should feel bold and grounded.</p>
         </div>
+        <div className="statement-media"><img src={FEATURED_PRODUCTS[2].image} alt="SUNRISE Peach Mango hemp-infused seltzer can" className="h-[260px] w-auto object-contain" /></div>
       </section>
 
       <section id="inside" className="site-section">
@@ -59,7 +56,8 @@ const Index = () => {
 
       <section className="site-section-tight">
         <SectionLabel name="Potency Tiers" />
-        <h2 className="site-heading max-w-2xl">Four tiers. Twenty-four ways in.</h2>
+        <h2 className="mb-3 text-[24px] font-black uppercase leading-tight tracking-[0.09em] md:text-[34px]">Four tiers.</h2>
+        <p className="site-subhead">Twenty-four ways in.</p>
         <div className="tier-grid">
           {TIERS.map((tier) => <Link key={tier.mg} to="/products" className={`tier-card ${tier.bgClass}`}><div><div className="tier-eyebrow">{tier.index}</div><div className="my-5"><PotencyLockup dose={tier.mg} base={42} color="hsl(var(--background))" /></div><div className="tier-name">{tier.tagline}</div><div className="tier-desc">{tier.triad}</div></div><div className="tier-card-arrow text-[11px] font-bold uppercase tracking-[0.14em]"><span>Explore</span><span>→</span></div></Link>)}
         </div>

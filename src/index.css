@@ -123,13 +123,15 @@
   .wf-nav-right { @apply hidden items-center gap-2 md:flex; }
   .wf-nav-cta { @apply rounded-full border-2 border-foreground px-4 py-2 text-[10px] font-bold uppercase tracking-[0.1em] text-foreground; }
   .wf-nav-cta-solid { @apply bg-foreground text-background; }
-  .hero-strip { @apply grid min-h-[520px] grid-cols-1 md:h-[calc(100svh-4rem)] md:max-h-[760px] md:min-h-[460px] md:grid-cols-4; }
-  .hero-tier { @apply relative flex min-h-[160px] items-end justify-center overflow-hidden p-5 md:min-h-0; }
+  .hero-strip { @apply grid min-h-[520px] grid-cols-1 md:h-[460px] md:min-h-0 md:grid-cols-4; }
+  .hero-tier { @apply relative flex min-h-[130px] items-end justify-center overflow-hidden p-5 md:min-h-0; }
   .hero-tier img { @apply h-[210px] w-auto object-contain md:h-[52vh] md:max-h-[440px]; }
   .hero-overlay { @apply pointer-events-none absolute inset-0 z-10 flex flex-col items-center justify-center px-5 text-center; }
   .hero-title { @apply mt-8 text-[36px] font-black uppercase leading-[1.05] tracking-[0.09em] text-background md:text-[58px]; }
   .brand-statement { @apply px-5 py-20 md:px-8 md:py-24; }
   .statement { @apply relative overflow-hidden border-b border-dashed border-border px-5 py-16 md:px-8 md:py-20; }
+  .home-origin { @apply block; }
+  .home-origin-copy { @apply max-w-3xl; }
   .statement-eyebrow { @apply mb-4 text-[10px] font-black uppercase tracking-[0.22em] text-primary; }
   .statement-media { @apply mt-8 flex min-h-[260px] items-center justify-center rounded-md border border-border bg-card/70 p-6; }
   .story-media { @apply flex min-h-[340px] items-center justify-center rounded-md border-[3px] border-tier-60 bg-card/70 p-6; }
