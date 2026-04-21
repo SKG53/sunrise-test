@@ -52,7 +52,7 @@ const Index = () => {
         </div>
       </section>
 
-      <section className="px-4 py-20">
+      <section id="inside" className="px-4 py-20">
         <div className="container mx-auto grid gap-10 lg:grid-cols-[1fr_0.9fr] lg:items-center">
           <div className="relative flex min-h-[440px] items-end justify-center bg-muted/50">
             <img src={FEATURED_PRODUCTS[1].image} alt="Centered SUNRISE hero can" className="h-[400px] w-auto object-contain drop-shadow-2xl" />
