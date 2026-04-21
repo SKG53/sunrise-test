@@ -1,96 +1,15 @@
+import { Link } from "react-router-dom";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import { ATTRIBUTES, FEATURED_PRODUCTS } from "@/lib/brandData";
+import { Button } from "@/components/ui/button";
+import { FEATURED_PRODUCTS } from "@/lib/brandData";
 
-const values = [
-  {
-    title: "Family-Owned",
-    desc: "Built by a family that believes in doing things the right way — with integrity, care, and a relentless pursuit of quality.",
-  },
-  {
-    title: "Formulated In-House",
-    desc: "Every recipe is developed by our team. We control the process from concept to can for a polished beverage experience.",
-  },
-  {
-    title: "Produced in the USA",
-    desc: "Proudly manufactured in American facilities with strict quality controls and thoughtful ingredient standards.",
-  },
-  {
-    title: "Beverage First",
-    desc: "We are a beverage company that happens to infuse hemp — not the other way around. Flavor always leads.",
-  },
-];
-
-const About = () => {
-  return (
-    <div className="min-h-screen bg-background">
-      <Navbar />
-
-      <section className="overflow-hidden px-4 py-16 md:py-24">
-        <div className="container mx-auto grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
-          <div>
-            <h1 className="gradient-text mb-4 text-4xl font-black tracking-widest md:text-6xl">Our Story</h1>
-            <p className="mb-8 text-sm font-black uppercase tracking-[0.24em] text-primary">Born in the Heart of America</p>
-            <div className="space-y-5 text-base leading-relaxed text-muted-foreground">
-              <p>
-                SUNRISE™ was born along the storied roads of America’s heartland. What started as a family passion for crafting the perfect seltzer has grown into a beverage-first lineup made for modern refreshment.
-              </p>
-              <p>
-                We believe premium taste should never be sacrificed for potency. Every SUNRISE™ seltzer is formulated in-house by beverage scientists and flavor experts using natural fruit-forward profiles.
-              </p>
-              <p>
-                From Route 66 inspiration to the finished can, SUNRISE™ is crafted with care, built on consistency, and made to refresh the way the world drinks.
-              </p>
-            </div>
-          </div>
-          <div className="relative flex min-h-[360px] items-end justify-center">
-            <div className="absolute inset-x-10 bottom-10 top-10 rounded-full bg-primary/10 blur-3xl" />
-            {FEATURED_PRODUCTS.slice(0, 3).map((product, index) => (
-              <img
-                key={product.id}
-                src={product.image}
-                alt={`SUNRISE ${product.flavor} can`}
-                loading="lazy"
-                className={`relative h-80 w-auto object-contain drop-shadow-2xl md:h-96 ${index > 0 ? "-ml-20" : ""} ${index === 1 ? "mb-8" : ""}`}
-              />
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="bg-muted/50 px-4 py-16 md:py-20">
-        <div className="container mx-auto max-w-5xl">
-          <h2 className="mb-12 text-center text-2xl font-black tracking-widest md:text-3xl">What We Stand For</h2>
-          <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
-            {values.map((value) => (
-              <div key={value.title} className="border border-border bg-card p-8">
-                <h3 className="mb-3 text-sm font-black tracking-widest text-primary">{value.title}</h3>
-                <p className="text-sm leading-relaxed text-muted-foreground">{value.desc}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="bg-primary px-4 py-16 md:py-20">
-        <div className="container mx-auto text-center">
-          <h2 className="mb-10 text-2xl font-black tracking-widest text-primary-foreground">What’s Inside</h2>
-          <div className="flex flex-wrap justify-center gap-4 md:gap-6">
-            {ATTRIBUTES.map((attr) => (
-              <div key={attr} className="rounded-full border border-primary-foreground/20 bg-primary-foreground/10 px-6 py-3">
-                <span className="text-xs font-bold uppercase tracking-[0.15em] text-primary-foreground">{attr}</span>
-              </div>
-            ))}
-          </div>
-          <p className="mx-auto mt-10 max-w-lg text-sm leading-relaxed text-primary-foreground/75">
-            Every batch is third-party lab tested. Scan the QR code on any SUNRISE™ can to view the full Certificate of Analysis.
-          </p>
-        </div>
-      </section>
-
-      <Footer />
-    </div>
-  );
-};
-
+const About = () => <div className="min-h-screen bg-background"><Navbar />
+  <section className="px-4 py-20 text-center md:py-28"><p className="mb-4 text-xs font-black uppercase tracking-[0.28em] text-primary">01 · Hero</p><h1 className="gradient-text text-5xl font-black uppercase tracking-wider md:text-7xl">About</h1><p className="mx-auto mt-8 max-w-4xl text-3xl font-black uppercase leading-tight tracking-wider md:text-5xl">Bold and natural at the same time.</p></section>
+  <section className="grid min-h-[540px] md:grid-cols-2"><div className="bg-tier-60 p-8 text-primary-foreground md:p-14"><p className="mb-4 text-xs font-black uppercase tracking-[0.28em]">02 · Origin</p><h2 className="text-4xl font-black uppercase tracking-wider md:text-6xl">Origin</h2><p className="mt-8 max-w-lg text-lg leading-relaxed text-primary-foreground/80">SUNRISE was born along the storied roads of America’s heartland — warm, confident, and composed for a modern beverage ritual.</p></div><div className="flex items-end justify-center bg-muted/50 p-8"><img src={FEATURED_PRODUCTS[0].image} alt="SUNRISE can in origin section" className="h-[430px] w-auto object-contain drop-shadow-2xl" /></div></section>
+  <section className="px-4 py-20"><div className="container mx-auto grid gap-8 md:grid-cols-2"><div><p className="mb-4 text-xs font-black uppercase tracking-[0.28em] text-primary">03 · Approach</p><h2 className="text-4xl font-black uppercase tracking-wider">How We Build</h2></div><div className="space-y-5 text-lg leading-relaxed text-muted-foreground"><p>In-house formulation, small-batch discipline, and full-panel testing keep the beverage experience precise from concept to can.</p><p>California Modern warmth sets the baseline, Minimalist Pop Art gives the cans their color confidence, and Compositional Restraint keeps every decision intentional.</p></div></div></section>
+  <section className="bg-muted/50 px-4 py-20"><div className="container mx-auto"><p className="mb-4 text-xs font-black uppercase tracking-[0.28em] text-primary">04 · People</p><h2 className="mb-10 text-4xl font-black uppercase tracking-wider">Who We Are</h2><div className="grid gap-5 md:grid-cols-3">{['Family-Owned','Beverage First','Made in America'].map((item) => <div key={item} className="min-h-64 border border-border bg-card p-8"><p className="text-2xl font-black uppercase tracking-wider">{item}</p></div>)}</div></div></section>
+  <section className="bg-tier-30 px-4 py-24 text-primary-foreground"><div className="container mx-auto"><p className="mb-4 text-xs font-black uppercase tracking-[0.28em]">05 · Place</p><h2 className="text-5xl font-black uppercase tracking-wider md:text-7xl">American Heartland</h2><p className="mt-8 max-w-2xl text-lg leading-relaxed text-primary-foreground/80">A geography layer, a Route 66 signal, and a warm American baseline — not wellness quiet, not synthetic loud.</p></div></section>
+  <section className="bg-primary px-4 py-16 text-center text-primary-foreground"><h2 className="text-3xl font-black uppercase tracking-wider md:text-5xl">Ready for a conversation?</h2><div className="mt-8 flex justify-center gap-3"><Link to="/products"><Button className="rounded-none bg-primary-foreground text-primary hover:bg-primary-foreground/90">Shop Now →</Button></Link><Link to="/near-you"><Button variant="outline" className="rounded-none border-primary-foreground text-primary-foreground hover:bg-primary-foreground/10">Find Near You →</Button></Link></div></section>
+  <Footer /></div>;
 export default About;
