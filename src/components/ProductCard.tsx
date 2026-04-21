@@ -22,9 +22,7 @@ const ProductCard = ({ product, tier, featured = false }: ProductCardProps) => {
       </div>
       <div className="space-y-3 p-5">
         <div className="flex flex-wrap items-center gap-2">
-          <Badge className={`${tier.bgClass} text-primary-foreground hover:${tier.bgClass}`}>
-            {product.potency}
-          </Badge>
+          <Badge className={`${tier.bgClass} text-primary-foreground`}>{product.potency}</Badge>
           {product.cannabinoids && (
             <Badge variant="outline" className={`${tier.colorClass} ${tier.borderClass} bg-background/60`}>
               + {product.cannabinoids}
