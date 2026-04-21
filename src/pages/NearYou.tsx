@@ -1,16 +1,20 @@
 import { useState } from "react";
 import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
+import { Line, PageShell, SectionLabel } from "@/components/WireframeBits";
 
-const retailers = ["Route Market", "Heartland Bottle Co.", "Sunset Spirits", "Corner Cooler"];
 const filters = ["All", "Dispensary", "Liquor", "Convenience", "Bar / Restaurant"];
 
-const NearYou = () => { const [filter,setFilter]=useState('All'); return <div className="min-h-screen bg-background"><Navbar />
-  <section className="px-4 py-20 text-center md:py-28"><p className="mb-4 text-xs font-black uppercase tracking-[0.28em] text-primary">01 · Hero</p><h1 className="gradient-text text-5xl font-black uppercase tracking-wider md:text-7xl">Find SUNRISE Near You</h1></section>
-  <section className="px-4 pb-12"><div className="container mx-auto border border-border bg-card p-5 md:p-8"><p className="mb-5 text-xs font-black uppercase tracking-[0.28em] text-primary">02 · Locator Input</p><div className="grid gap-3 md:grid-cols-[1fr_180px_140px]"><Input placeholder="ENTER ZIP OR CITY" className="rounded-none bg-background"/><Button variant="outline" className="rounded-none">STATE ▾</Button><Button className="rounded-none bg-primary text-primary-foreground">Search</Button></div><div className="mt-5 flex flex-wrap gap-2">{filters.map((item)=><button key={item} onClick={()=>setFilter(item)} className={`border px-4 py-2 text-xs font-black uppercase tracking-widest ${filter===item?'border-primary bg-primary text-primary-foreground':'border-border bg-background'}`}>{item}</button>)}</div></div></section>
-  <section className="px-4 py-12"><div className="container mx-auto grid gap-8 lg:grid-cols-[0.8fr_1.2fr]"><div><p className="mb-5 text-xs font-black uppercase tracking-[0.28em] text-primary">03 · Results</p><h2 className="mb-8 text-4xl font-black uppercase tracking-wider">Nearby Retailers</h2><div className="divide-y divide-border border-y border-border">{retailers.map((r)=><div key={r} className="py-5"><p className="font-black uppercase tracking-wider">{r}</p><p className="mt-1 text-sm text-muted-foreground">Retailer type · 2.4 miles</p></div>)}</div></div><div className="flex min-h-[460px] items-center justify-center bg-tier-30 text-primary-foreground"><p className="text-center text-3xl font-black uppercase tracking-wider">Map zone · pinned retailers</p></div></div></section>
-  <section className="grid md:grid-cols-2"><div className="bg-muted/50 p-10 md:p-14"><h2 className="text-4xl font-black uppercase tracking-wider">Don’t See SUNRISE Near You?</h2><Button className="mt-8 rounded-none bg-primary text-primary-foreground">Request a Retailer →</Button></div><div className="bg-tier-60 p-10 text-primary-foreground md:p-14"><h2 className="text-4xl font-black uppercase tracking-wider">Are You a Retailer?</h2><Button variant="outline" className="mt-8 rounded-none border-primary-foreground text-primary-foreground hover:bg-primary-foreground/10">Wholesale Inquiries →</Button></div></section>
-  <Footer /></div>};
+const NearYou = () => {
+  const [filter, setFilter] = useState("All");
+  return (
+    <PageShell>
+      <Navbar />
+      <section className="wf-section-roomy"><SectionLabel tag="01 · Hero" name="Find SUNRISE Near You" /><h1 className="max-w-3xl text-[44px] font-black uppercase leading-tight tracking-wider md:text-[68px]">Find SUNRISE Near You</h1></section>
+      <section className="wf-section"><SectionLabel tag="02 · Locator Input" name="Search" /><div className="flex flex-col gap-2 md:flex-row"><input className="h-[42px] flex-1 rounded border-2 border-foreground bg-background px-3.5 text-[10px] uppercase tracking-wider text-muted-foreground outline-none" placeholder="ENTER ZIP OR CITY" /><button className="h-[42px] rounded border-2 border-foreground px-3.5 text-left text-[10px] uppercase tracking-wider text-muted-foreground md:w-36">STATE ▾</button><button className="wf-btn h-[42px] justify-center rounded md:w-28">Search</button></div><div className="mt-3 flex flex-wrap gap-2">{filters.map((item)=><button key={item} onClick={()=>setFilter(item)} className={`rounded-full border px-3 py-1.5 text-[8px] font-bold uppercase tracking-[0.16em] ${filter===item?'border-foreground bg-foreground text-background':'border-border bg-card/60 text-muted-foreground'}`}>{item}</button>)}</div></section>
+      <section className="wf-section"><SectionLabel tag="03 · Results" name="Nearby Retailers" /><div className="wf-map-zone">Map zone · pinned retailers</div><div className="mt-4 rounded border border-border bg-card/60">{[60,50,60,50].map((w,i)=><div key={i} className="border-b border-border p-3.5 last:border-b-0"><Line kind="sub" width={String(w)} /><Line width={i%2?'70':'80'} /><Line kind="caption" width="30" className="bg-muted-foreground/60" /></div>)}</div></section>
+      <section className="wf-section"><SectionLabel tag="04 · Fallback" name="Don't See SUNRISE Near You?" /><Line width="80" /><Line width="60" /><div className="mt-3.5 flex flex-wrap gap-2"><span className="wf-btn wf-btn-ghost">Request a Retailer →</span><span className="wf-btn wf-btn-ghost">Shop Online →</span></div></section>
+      <section className="wf-section bg-foreground text-background"><SectionLabel tag="05 · Retailer Gateway" name="Are You a Retailer?" /><Line kind="head" width="70" className="bg-background/95" /><Line width="80" className="mt-3 bg-background/45" /><Line width="60" className="bg-background/45" /><div className="mt-4"><span className="wf-btn wf-btn-on-color">Wholesale Inquiries →</span></div></section>
+    </PageShell>
+  );
+};
 export default NearYou;

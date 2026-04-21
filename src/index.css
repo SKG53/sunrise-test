@@ -101,3 +101,76 @@
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
+
+@layer components {
+  .wf-page { @apply min-h-screen bg-background text-foreground; }
+  .wf-section { @apply relative overflow-hidden border-b border-dashed border-border px-5 py-9 md:px-8; }
+  .wf-section-roomy { @apply relative overflow-hidden border-b border-dashed border-border px-5 py-14 md:px-8 md:py-16; }
+  .wf-section-tag { @apply absolute right-4 top-3 z-10 text-[8px] font-bold uppercase tracking-[0.18em] text-muted-foreground; }
+  .wf-section-name { @apply mb-4 text-[13px] font-bold uppercase tracking-[0.16em] text-muted-foreground; }
+  .wf-section-intent { @apply mb-4 -mt-2 text-[9px] font-semibold uppercase leading-relaxed tracking-[0.12em] text-muted-foreground; }
+  .wf-line { @apply mb-2 h-2 rounded-sm bg-border; }
+  .wf-line-head { @apply h-[18px] bg-muted-foreground/70; }
+  .wf-line-xl { @apply h-[26px] bg-foreground/70; }
+  .wf-line-sub { @apply h-2.5 bg-muted-foreground/60; }
+  .wf-line-body { @apply h-1.5 bg-border; }
+  .wf-line-caption { @apply h-1 bg-muted-foreground/50; }
+  .wf-w-90 { width: 90%; } .wf-w-80 { width: 80%; } .wf-w-70 { width: 70%; } .wf-w-60 { width: 60%; } .wf-w-50 { width: 50%; } .wf-w-40 { width: 40%; } .wf-w-30 { width: 30%; }
+  .wf-btn { @apply inline-flex items-center rounded-full bg-foreground px-5 py-2.5 text-[9px] font-bold uppercase tracking-[0.16em] text-background; }
+  .wf-btn-ghost { @apply border-2 border-foreground bg-transparent text-foreground; }
+  .wf-btn-on-color { @apply bg-background text-foreground; }
+  .wf-btn-on-color-ghost { @apply border-2 border-background bg-transparent text-background; }
+  .wf-img { @apply flex items-center justify-center rounded border border-border bg-[repeating-linear-gradient(45deg,hsl(var(--muted)),hsl(var(--muted))_6px,hsl(var(--border))_6px,hsl(var(--border))_12px)] p-3 text-center text-[8px] font-bold uppercase tracking-[0.16em] text-muted-foreground; }
+  .wf-zone { @apply rounded border border-border bg-card/60 p-4; }
+  .wf-zone-row { @apply grid gap-3 md:grid-cols-2; }
+  .wf-nav { @apply sticky top-0 z-50 flex h-14 items-center justify-between border-b border-border bg-background px-5 md:px-7; }
+  .wf-nav-logo { @apply leading-none; }
+  .wf-nav-links { @apply hidden items-center gap-[18px] md:flex; }
+  .wf-nav-link { @apply text-[9px] font-semibold uppercase tracking-[0.16em] text-muted-foreground hover:text-foreground; }
+  .wf-nav-link-active { @apply font-black text-foreground; }
+  .wf-nav-right { @apply hidden items-center gap-2 md:flex; }
+  .wf-nav-cta { @apply rounded-full border-2 border-foreground px-3.5 py-1.5 text-[8px] font-bold uppercase tracking-[0.16em] text-foreground; }
+  .wf-nav-cta-solid { @apply bg-foreground text-background; }
+  .wf-hero-strip { @apply grid h-[460px] grid-cols-4; }
+  .wf-hero-overlay { @apply absolute inset-0 z-10 flex flex-col items-center justify-center px-8 text-center; }
+  .wf-cream-label { @apply text-background/85; }
+  .wf-tier-grid { @apply mt-4 grid gap-2.5 md:grid-cols-4; }
+  .wf-tier-card { @apply flex h-[220px] flex-col justify-between rounded p-4 text-background; }
+  .wf-tier-eyebrow { @apply text-[7px] font-bold uppercase tracking-[0.2em] text-background/75; }
+  .wf-tier-name { @apply text-[9px] font-black uppercase tracking-[0.16em] text-background/95; }
+  .wf-tier-desc { @apply mt-1.5 text-[8px] font-medium leading-relaxed text-background/85; }
+  .wf-tier-arrow { @apply mt-2 flex items-center justify-between text-[10px] font-bold uppercase tracking-[0.16em] text-background; }
+  .wf-inside-layout { @apply grid gap-7 md:grid-cols-[1fr_1.1fr]; }
+  .wf-ingredient-row { @apply border-b border-border py-2.5 last:border-b-0; }
+  .wf-ingredient-name { @apply mb-1 text-[10px] font-black uppercase tracking-[0.16em] text-foreground; }
+  .wf-story-grid { @apply grid gap-7 md:grid-cols-[4fr_5fr]; }
+  .wf-map-zone { @apply relative flex h-80 items-center justify-center rounded border border-border bg-[repeating-linear-gradient(45deg,hsl(var(--muted)),hsl(var(--muted))_8px,hsl(var(--border))_8px,hsl(var(--border))_16px)] text-center text-[9px] font-bold uppercase tracking-[0.16em] text-muted-foreground; }
+  .wf-map-card { @apply absolute bottom-5 left-5 w-60 rounded border border-border bg-background p-4; }
+  .wf-ptp { @apply relative grid gap-10 overflow-hidden bg-foreground px-5 py-14 text-background md:grid-cols-[1.3fr_1fr] md:px-8; }
+  .wf-footer { @apply relative overflow-hidden bg-foreground px-5 py-10 text-background md:px-8; }
+  .wf-footer-grid { @apply mt-3 grid gap-6 md:grid-cols-[1.5fr_1fr_1fr_1fr]; }
+  .wf-footer-head { @apply mb-2.5 text-[8px] font-black uppercase tracking-[0.22em] text-background/60; }
+  .wf-footer-link { @apply mb-1.5 block text-[9px] font-medium text-background/85; }
+  .wf-footer-compliance { @apply mt-6 border-t border-background/15 pt-4 text-[7px] leading-relaxed text-background/50; }
+  .wf-tier-switcher { @apply mb-6 grid grid-cols-4 overflow-hidden rounded border-2 border-foreground; }
+  .wf-tier-switch { @apply border-r border-foreground px-2.5 py-3 text-center last:border-r-0; }
+  .wf-tier-switch-active { @apply bg-tier-10 text-background; }
+  .wf-tier-switch-mg { @apply text-[13px] font-black leading-none; }
+  .wf-tier-switch-name { @apply mt-1 text-[7px] font-bold uppercase tracking-[0.14em] opacity-70; }
+  .wf-tier-panel { @apply rounded bg-tier-10 px-5 py-10 text-background md:px-8; }
+  .wf-flavor-grid { @apply grid gap-3 sm:grid-cols-2 md:grid-cols-3; }
+  .wf-flavor-card { @apply flex h-[150px] flex-col justify-between rounded border border-background/35 bg-background/10 p-3; }
+  .wf-flavor-can { @apply flex h-20 items-center justify-center rounded bg-background/20 text-[7px] font-bold uppercase tracking-[0.12em] text-background/70; }
+  .wf-flavor-name { @apply mt-2 text-[8px] font-bold uppercase tracking-[0.12em] text-background; }
+  .wf-flavor-sub { @apply mt-0.5 text-[7px] font-medium text-background/70; }
+  .wf-cannabinoid-grid { @apply mt-4 grid gap-2.5 md:grid-cols-3; }
+  .wf-cannabinoid-card { @apply flex h-[180px] flex-col justify-between rounded p-4 text-background; }
+  .wf-ticker { @apply overflow-hidden bg-foreground py-3.5 text-background; }
+  .wf-ticker-track { @apply flex min-w-max items-center gap-10 px-8 text-[10px] font-bold uppercase tracking-[0.25em] text-background/85; }
+  .wf-dot { @apply h-1 w-1 rounded-full bg-tier-5; }
+  .wf-product-hero { @apply relative grid gap-6 border-b border-dashed border-border px-5 py-8 md:grid-cols-[1.1fr_1fr] md:px-8; }
+  .wf-product-can-zone { @apply flex h-[420px] items-center justify-center rounded border border-border bg-[repeating-linear-gradient(45deg,hsl(var(--muted)),hsl(var(--muted))_6px,hsl(var(--border))_6px,hsl(var(--border))_12px)]; }
+  .wf-stat-strip { @apply relative grid gap-4 border-b border-dashed border-border px-5 py-7 md:grid-cols-4 md:px-8; }
+  .wf-stat-num { @apply text-[32px] font-black leading-none tracking-normal text-foreground; }
+  .wf-stat-label { @apply text-[8px] font-bold uppercase tracking-[0.16em] text-muted-foreground; }
+}
