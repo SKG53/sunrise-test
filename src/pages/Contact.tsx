@@ -1,20 +1,19 @@
 import { useState } from "react";
 import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import { Label } from "@/components/ui/label";
+import { Line, PageShell, SectionLabel } from "@/components/WireframeBits";
 import { toast } from "sonner";
-
-const paths = ["Wholesale", "Retail", "Press", "General"];
 
 const Contact = () => {
   const [formData, setFormData] = useState({ name: "", email: "", reason: "", message: "" });
-  const handleSubmit = (e: React.FormEvent) => { e.preventDefault(); toast.success("Message sent!", { description: "We'll get back to you soon." }); setFormData({ name: "", email: "", reason: "", message: "" }); };
-  return <div className="min-h-screen bg-background"><Navbar />
-    <section className="px-4 py-20 text-center md:py-28"><p className="mb-4 text-xs font-black uppercase tracking-[0.28em] text-primary">01 · Hero</p><h1 className="gradient-text text-5xl font-black uppercase tracking-wider md:text-7xl">Give Us a Buzz</h1></section>
-    <section className="px-4 pb-20"><div className="container mx-auto grid gap-10 lg:grid-cols-[1.1fr_0.9fr]"><form onSubmit={handleSubmit} className="border border-border bg-card p-6 md:p-8"><p className="mb-5 text-xs font-black uppercase tracking-[0.28em] text-primary">02 · General Inquiry</p><h2 className="mb-8 text-4xl font-black uppercase tracking-wider">Tell Us Your Story</h2><div className="space-y-6"><div><Label htmlFor="name" className="text-xs font-black uppercase tracking-widest">Name</Label><Input id="name" required value={formData.name} onChange={(e)=>setFormData({...formData,name:e.target.value})} className="mt-2 rounded-none bg-background" /></div><div><Label htmlFor="email" className="text-xs font-black uppercase tracking-widest">Email</Label><Input id="email" type="email" required value={formData.email} onChange={(e)=>setFormData({...formData,email:e.target.value})} className="mt-2 rounded-none bg-background" /></div><div><Label htmlFor="reason" className="text-xs font-black uppercase tracking-widest">Reason for Reaching Out</Label><Input id="reason" required value={formData.reason} onChange={(e)=>setFormData({...formData,reason:e.target.value})} className="mt-2 rounded-none bg-background" /></div><div><Label htmlFor="message" className="text-xs font-black uppercase tracking-widest">Message</Label><Textarea id="message" required rows={7} value={formData.message} onChange={(e)=>setFormData({...formData,message:e.target.value})} className="mt-2 rounded-none bg-background" /></div><Button type="submit" className="w-full rounded-none bg-primary py-6 text-primary-foreground">Send →</Button></div></form><div className="space-y-8"><div><p className="mb-5 text-xs font-black uppercase tracking-[0.28em] text-primary">03 · Direct Paths</p><h2 className="mb-5 text-4xl font-black uppercase tracking-wider">Or Reach the Right Team</h2><div className="grid gap-3">{paths.map((path)=><button key={path} className="border border-border bg-card p-5 text-left text-sm font-black uppercase tracking-widest hover:border-primary">{path} →</button>)}</div></div><div className="bg-tier-30 p-8 text-primary-foreground"><p className="mb-5 text-xs font-black uppercase tracking-[0.28em]">04 · Location</p><h2 className="text-4xl font-black uppercase tracking-wider">Where We Are</h2><p className="mt-5 text-primary-foreground/80">American heartland roots. National conversation.</p></div></div></div></section>
-    <Footer /></div>;
+  const submit = (e: React.FormEvent) => { e.preventDefault(); toast.success("Message sent!"); setFormData({ name: "", email: "", reason: "", message: "" }); };
+  return (
+    <PageShell>
+      <Navbar />
+      <section className="wf-section-roomy"><SectionLabel tag="01 · Hero" name="Give Us a Buzz" /><h1 className="max-w-2xl text-[44px] font-black uppercase leading-tight tracking-wider md:text-[66px]">Give Us a Buzz</h1></section>
+      <section className="wf-section"><SectionLabel tag="02 · General Inquiry" name="Tell Us Your Story" /><form onSubmit={submit}><div className="wf-zone-row"><div><label className="mb-1 block text-[8px] font-bold uppercase tracking-[0.16em] text-muted-foreground">Name</label><input required value={formData.name} onChange={(e)=>setFormData({...formData,name:e.target.value})} className="h-9 w-full rounded border border-border bg-card/60 px-3 outline-none" /></div><div><label className="mb-1 block text-[8px] font-bold uppercase tracking-[0.16em] text-muted-foreground">Email</label><input required type="email" value={formData.email} onChange={(e)=>setFormData({...formData,email:e.target.value})} className="h-9 w-full rounded border border-border bg-card/60 px-3 outline-none" /></div></div><div className="mt-3.5"><label className="mb-1 block text-[8px] font-bold uppercase tracking-[0.16em] text-muted-foreground">Reason for Reaching Out</label><input required value={formData.reason} onChange={(e)=>setFormData({...formData,reason:e.target.value})} className="h-9 w-full rounded border border-border bg-card/60 px-3 outline-none" /></div><div className="mt-3.5"><label className="mb-1 block text-[8px] font-bold uppercase tracking-[0.16em] text-muted-foreground">Message</label><textarea required value={formData.message} onChange={(e)=>setFormData({...formData,message:e.target.value})} className="h-[100px] w-full rounded border border-border bg-card/60 px-3 py-2 outline-none" /></div><button type="submit" className="wf-btn mt-3">Send →</button></form></section>
+      <section className="wf-section"><SectionLabel tag="03 · Direct Paths" name="Or Reach the Right Team" /><div className="wf-zone-row">{[40,50,40,60].map((w,i)=><div key={i} className="wf-zone"><Line kind="sub" width={String(w)} /><Line width="80" /><Line kind="caption" width="40" className="bg-muted-foreground/60" /></div>)}</div></section>
+      <section className="wf-section"><SectionLabel tag="04 · Location" name="Where We Are" /><Line kind="head" width="60" /><Line width="70" className="mt-2.5" /><Line width="50" /></section>
+    </PageShell>
+  );
 };
 export default Contact;
