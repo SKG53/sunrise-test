@@ -28,26 +28,35 @@ import can60StrawberryKiwiThcv from "@/assets/products/60mg-strawberry-kiwi-thcv
 export const BRAND = {
   name: "SUNRISE™",
   tagline: "REFRESH THE WAY THE WORLD DRINKS",
-  legal: "© 2025 SUNRISE Beverage. All rights reserved.",
+  legal: "SUNRISE™ is a registered trademark of SUNRISE Beverage Company. All rights reserved. Must be 21+ to purchase. Federally legal hemp-derived Delta-9 THC. Consume responsibly.",
   logoSrc,
   taglineSrc,
 };
+
+export type TierId = 5 | 10 | 30 | 60;
 
 export interface Product {
   id: string;
   name: string;
   flavor: string;
   descriptor: string;
+  notes: string;
   image: string;
+  tier: TierId;
   potency: string;
+  price: string;
+  servings: number;
   cannabinoids?: string;
 }
 
 export interface Tier {
-  mg: number;
+  mg: TierId;
+  index: string;
   label: string;
+  shortName: string;
   tagline: string;
   description: string;
+  triad: string;
   colorClass: string;
   bgClass: string;
   borderClass: string;
@@ -56,19 +65,19 @@ export interface Tier {
   products: Product[];
 }
 
-const flavorNotes: Record<string, string> = {
+const notes: Record<string, string> = {
   Blackberry: "Dark berry, crisp finish",
-  "Blood Orange": "Bright citrus with ruby depth",
+  "Blood Orange": "Ruby citrus, clean sparkle",
   "Passionfruit Mango": "Tropical, juicy, sunlit",
   "Blueberry Lemonade": "Blueberry snap with fresh lemon",
   "Strawberry Peach": "Soft stone fruit and berry",
   "Black Cherry": "Deep cherry with a clean sparkle",
-  Lemonade: "Classic citrus, tart and clean",
-  Strawberry: "Ripe berry with a bright lift",
-  Watermelon: "Fresh melon, cool finish",
-  Tangerine: "Zesty citrus with a smooth edge",
-  "Blackberry Lemonade": "Jammy berry and lemonade tang",
-  "Blueberry Açaí": "Blue fruit with a berry-rich finish",
+  Lemonade: "Crisp + Tangy",
+  Strawberry: "Fresh + Fruity",
+  Watermelon: "Sweet + Juicy",
+  Tangerine: "Bright + Zesty",
+  "Blackberry Lemonade": "Tart + Bold",
+  "Blueberry Acai": "Rich + Vibrant",
   "Cherry Limeade": "Bold cherry and sharp lime",
   "Orange Lemonade": "Sunny citrus with lemonade bite",
   "Peach Mango": "Velvety peach and mango",
@@ -79,22 +88,29 @@ const flavorNotes: Record<string, string> = {
   "Strawberry Kiwi": "Berry kiwi with a lively finish",
 };
 
-const product = (tier: number, flavor: string, image: string, cannabinoids?: string): Product => ({
-  id: `${tier}-${flavor.toLowerCase().replace(/[^a-z0-9]+/g, "-")}${cannabinoids ? `-${cannabinoids.toLowerCase()}` : ""}`,
-  name: `${flavor} ${tier}mg`,
+const product = (tier: TierId, flavor: string, image: string, cannabinoids?: string): Product => ({
+  id: `${tier}mg-${flavor.toLowerCase().replace(/[^a-z0-9]+/g, "-")}${cannabinoids ? `-${cannabinoids.toLowerCase().replace(/[^a-z0-9]+/g, "-")}` : ""}`,
+  name: `${flavor}${cannabinoids ? ` + ${cannabinoids.replace(/\d+mg /, "")}` : ""}`,
   flavor,
-  descriptor: flavorNotes[flavor] ?? "Clean fruit flavor with crisp seltzer finish",
+  descriptor: notes[flavor] ?? "Clean fruit flavor with crisp seltzer finish",
+  notes: notes[flavor] ?? "Bright + Crisp",
   image,
-  potency: `${tier}mg THC`,
+  tier,
+  potency: `${tier}MG THC`,
+  price: "$4.99 / can",
+  servings: tier === 5 ? 1 : 2,
   cannabinoids,
 });
 
 export const TIERS: Tier[] = [
   {
     mg: 5,
-    label: "5mg THC",
-    tagline: "Light & Easy",
-    description: "A lighter sparkling pour for social sipping, bright flavor, and an easygoing pace.",
+    index: "TIER 01",
+    label: "5MG",
+    shortName: "Subtle Lift",
+    tagline: "A Subtle Lift",
+    description: "Light, bright, casual refreshment for a slower pour and an easy pace.",
+    triad: "Light · bright · casual",
     colorClass: "text-tier-5",
     bgClass: "bg-tier-5",
     borderClass: "border-tier-5",
@@ -104,35 +120,41 @@ export const TIERS: Tier[] = [
       product(5, "Blackberry", can5Blackberry),
       product(5, "Blood Orange", can5BloodOrange),
       product(5, "Passionfruit Mango", can5PassionfruitMango),
-      product(5, "Blueberry Lemonade", can5BlueberryLemonadeCbg, "30mg CBG"),
-      product(5, "Strawberry Peach", can5StrawberryPeachThcv, "30mg THCV"),
-      product(5, "Black Cherry", can5BlackCherryCbn, "5mg CBN"),
+      product(5, "Blueberry Lemonade", can5BlueberryLemonadeCbg, "30MG CBG"),
+      product(5, "Strawberry Peach", can5StrawberryPeachThcv, "30MG THCV"),
+      product(5, "Black Cherry", can5BlackCherryCbn, "5MG CBN"),
     ],
   },
   {
     mg: 10,
-    label: "10mg THC",
-    tagline: "The Sweet Spot",
-    description: "Full-flavored refreshment with a confident, balanced profile for the seasoned sipper.",
+    index: "TIER 02",
+    label: "10MG",
+    shortName: "Perfect Buzz",
+    tagline: "The Perfect Buzz",
+    description: "Smooth, balanced, social — the tier that lets flavor lead and the moment open up.",
+    triad: "Smooth · balanced · social",
     colorClass: "text-tier-10",
     bgClass: "bg-tier-10",
     borderClass: "border-tier-10",
     softClass: "bg-tier-10/10",
     token: "hsl(var(--tier-10))",
     products: [
-      product(10, "Lemonade", can10Lemonade),
       product(10, "Strawberry", can10Strawberry),
       product(10, "Watermelon", can10Watermelon),
-      product(10, "Tangerine", can10TangerineCbg, "30mg CBG"),
-      product(10, "Blackberry Lemonade", can10BlackberryLemonadeCbn, "30mg CBN"),
-      product(10, "Blueberry Açaí", can10BlueberryAcaiThcv, "30mg THCV"),
+      product(10, "Lemonade", can10Lemonade),
+      product(10, "Tangerine", can10TangerineCbg, "30MG CBG"),
+      product(10, "Blackberry Lemonade", can10BlackberryLemonadeCbn, "30MG CBN"),
+      product(10, "Blueberry Acai", can10BlueberryAcaiThcv, "30MG THCV"),
     ],
   },
   {
     mg: 30,
-    label: "30mg THC",
-    tagline: "Elevated Experience",
-    description: "A more expressive tier with layered fruit profiles and a polished seltzer finish.",
+    index: "TIER 03",
+    label: "30MG",
+    shortName: "Deeper Dive",
+    tagline: "A Deeper Dive",
+    description: "Bold, vibrant, spirited seltzers with layered fruit and a full sparkling finish.",
+    triad: "Bold · vibrant · spirited",
     colorClass: "text-tier-30",
     bgClass: "bg-tier-30",
     borderClass: "border-tier-30",
@@ -142,16 +164,19 @@ export const TIERS: Tier[] = [
       product(30, "Cherry Limeade", can30CherryLimeade),
       product(30, "Orange Lemonade", can30OrangeLemonade),
       product(30, "Peach Mango", can30PeachMango),
-      product(30, "Kiwi Watermelon", can30KiwiWatermelonCbg, "30mg CBG"),
-      product(30, "Blueberry Pomegranate", can30BlueberryPomegranateCbn, "30mg CBN"),
-      product(30, "Strawberry Watermelon", can30StrawberryWatermelonThcv, "30mg THCV"),
+      product(30, "Kiwi Watermelon", can30KiwiWatermelonCbg, "30MG CBG"),
+      product(30, "Blueberry Pomegranate", can30BlueberryPomegranateCbn, "30MG CBN"),
+      product(30, "Strawberry Watermelon", can30StrawberryWatermelonThcv, "30MG THCV"),
     ],
   },
   {
     mg: 60,
-    label: "60mg THC",
-    tagline: "Maximum Strength",
-    description: "Our most potent lineup, crafted as a premium beverage experience with bold fruit character.",
+    index: "TIER 04",
+    label: "60MG",
+    shortName: "Elevated",
+    tagline: "Elevated Experience",
+    description: "Potent, rich, immersive flavor statements built for SUNRISE’s boldest tier.",
+    triad: "Potent · rich · immersive",
     colorClass: "text-tier-60",
     bgClass: "bg-tier-60",
     borderClass: "border-tier-60",
@@ -161,40 +186,34 @@ export const TIERS: Tier[] = [
       product(60, "Blueberry Lemonade", can60BlueberryLemonade),
       product(60, "Passionfruit Mango", can60PassionfruitMango),
       product(60, "Wild Cherry Peach", can60WildCherryPeach),
-      product(60, "Blood Orange", can60BloodOrangeCbg, "30mg CBG"),
-      product(60, "Blackberry", can60BlackberryCbn, "30mg CBN"),
-      product(60, "Strawberry Kiwi", can60StrawberryKiwiThcv, "30mg THCV"),
+      product(60, "Blood Orange", can60BloodOrangeCbg, "30MG CBG"),
+      product(60, "Blackberry", can60BlackberryCbn, "30MG CBN"),
+      product(60, "Strawberry Kiwi", can60StrawberryKiwiThcv, "30MG THCV"),
     ],
   },
 ];
 
-export const FEATURED_PRODUCTS = [
-  TIERS[0].products[1],
-  TIERS[1].products[4],
-  TIERS[2].products[2],
-  TIERS[3].products[5],
+export const PRODUCTS = TIERS.flatMap((tier) => tier.products);
+export const FEATURED_PRODUCTS = [TIERS[1].products[4], TIERS[0].products[1], TIERS[2].products[2], TIERS[3].products[5]];
+
+export const INGREDIENTS = [
+  "Purified Water",
+  "Pure Cane Sugar",
+  "Natural Flavoring",
+  "Emulsified Hemp Extract",
+  "Natural Enhancers (B12)",
+  "Fresh Lemon Juice",
+  "Citric Acid",
+  "Sodium Benzoate",
 ];
 
-export const ATTRIBUTES = [
-  "All Natural",
-  "Vegan",
-  "Gluten Free",
-  "Zero Alcohol",
-  "Vitamin B12",
-  "Low Calorie",
+export const ATTRIBUTES = ["24 Flavors", "4 Potencies", "12 FL OZ", "70 Calories", "Natural · Vegan", "Gluten Free", "Zero Alcohol", "Infused With B12", "Made in USA"];
+
+export const CANNABINOIDS = [
+  { mood: "Focus", name: "CBG", detail: "In select flavors · all tiers" },
+  { mood: "Relax", name: "CBN", detail: "In select flavors · all tiers" },
+  { mood: "Elevate", name: "THCV", detail: "In select flavors · all tiers" },
 ];
 
-export const VALUE_PROPS = [
-  {
-    title: "Flavor First",
-    description: "Real fruit flavors crafted to taste like a premium beverage — never an afterthought.",
-  },
-  {
-    title: "Consistency",
-    description: "Precisely developed seltzers built to deliver the same polished experience, can after can.",
-  },
-  {
-    title: "Transparency",
-    description: "Every batch is third-party lab tested. Scan the QR code on any can to view the Certificate of Analysis.",
-  },
-];
+export const getTierByMg = (mg: number) => TIERS.find((tier) => tier.mg === mg) ?? TIERS[1];
+export const getProductById = (id: string | undefined) => PRODUCTS.find((product) => product.id === id);
