@@ -51,6 +51,7 @@ export interface Tier {
   colorClass: string;
   bgClass: string;
   borderClass: string;
+  softClass: string;
   token: string;
   products: Product[];
 }
@@ -97,6 +98,7 @@ export const TIERS: Tier[] = [
     colorClass: "text-tier-5",
     bgClass: "bg-tier-5",
     borderClass: "border-tier-5",
+    softClass: "bg-tier-5/10",
     token: "hsl(var(--tier-5))",
     products: [
       product(5, "Blackberry", can5Blackberry),
@@ -115,6 +117,7 @@ export const TIERS: Tier[] = [
     colorClass: "text-tier-10",
     bgClass: "bg-tier-10",
     borderClass: "border-tier-10",
+    softClass: "bg-tier-10/10",
     token: "hsl(var(--tier-10))",
     products: [
       product(10, "Lemonade", can10Lemonade),
@@ -133,6 +136,7 @@ export const TIERS: Tier[] = [
     colorClass: "text-tier-30",
     bgClass: "bg-tier-30",
     borderClass: "border-tier-30",
+    softClass: "bg-tier-30/10",
     token: "hsl(var(--tier-30))",
     products: [
       product(30, "Cherry Limeade", can30CherryLimeade),
@@ -151,6 +155,7 @@ export const TIERS: Tier[] = [
     colorClass: "text-tier-60",
     bgClass: "bg-tier-60",
     borderClass: "border-tier-60",
+    softClass: "bg-tier-60/10",
     token: "hsl(var(--tier-60))",
     products: [
       product(60, "Blueberry Lemonade", can60BlueberryLemonade),

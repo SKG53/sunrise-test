@@ -88,7 +88,7 @@ const Index = () => {
               <Link to="/products" key={tier.mg} className="group block overflow-hidden rounded-lg border border-border bg-card transition-all duration-300 hover:-translate-y-1 hover:border-primary/50 hover:shadow-xl">
                 <div className={`h-2 ${tier.bgClass}`} />
                 <div className="relative flex h-72 items-end justify-center overflow-hidden bg-muted/40 px-4 pt-8">
-                  <div className={`absolute inset-x-10 bottom-8 top-16 rounded-full ${tier.bgClass}/10 blur-2xl`} />
+                  <div className={`absolute inset-x-10 bottom-8 top-16 rounded-full ${tier.softClass} blur-2xl`} />
                   <img src={tier.products[0].image} alt={`SUNRISE ${tier.label} can`} loading="lazy" className="relative z-10 h-64 w-auto object-contain drop-shadow-2xl transition-transform duration-500 group-hover:scale-105" />
                 </div>
                 <div className="p-6">

@@ -12,7 +12,7 @@ const ProductCard = ({ product, tier, featured = false }: ProductCardProps) => {
     <article className="group relative overflow-hidden rounded-lg border border-border bg-card transition-all duration-300 hover:-translate-y-1 hover:border-primary/50 hover:shadow-xl">
       <div className={`h-1.5 ${tier.bgClass}`} />
       <div className="relative flex min-h-72 items-end justify-center overflow-hidden bg-muted/40 px-6 pt-8">
-        <div className={`absolute inset-x-8 bottom-8 top-12 rounded-full ${tier.bgClass}/10 blur-2xl`} />
+        <div className={`absolute inset-x-8 bottom-8 top-12 rounded-full ${tier.softClass} blur-2xl`} />
         <img
           src={product.image}
           alt={`SUNRISE ${product.potency} ${product.flavor} can`}
