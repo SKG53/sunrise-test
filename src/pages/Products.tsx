@@ -1,9 +1,7 @@
 import { useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
-import ProductCard from "@/components/ProductCard";
-import { Button } from "@/components/ui/button";
+import { Line, PageShell, PathToPurchase, SectionLabel } from "@/components/WireframeBits";
 import { ATTRIBUTES, CANNABINOIDS, TIERS } from "@/lib/brandData";
 
 const Products = () => {
@@ -11,37 +9,40 @@ const Products = () => {
   const activeTier = useMemo(() => TIERS.find((tier) => tier.mg === activeMg) ?? TIERS[1], [activeMg]);
 
   return (
-    <div className="min-h-screen bg-background">
+    <PageShell>
       <Navbar />
-      <section className="px-4 py-16 text-center md:py-20">
-        <p className="mb-4 text-xs font-black uppercase tracking-[0.28em] text-primary">01 · Hero</p>
-        <h1 className="gradient-text text-5xl font-black uppercase tracking-wider md:text-7xl">Products</h1>
+      <section className="wf-section-roomy">
+        <SectionLabel tag="01 · Hero" name="Products" intent="Intent · short typographic hero. Lets the tier-switcher below do the work." />
+        <h1 className="max-w-xl text-[48px] font-black uppercase leading-tight tracking-wider md:text-[72px]">Shop by potency.</h1>
+        <Line width="70" className="mt-5" /><Line width="50" />
       </section>
 
-      <section className="px-4 pb-20">
-        <div className="container mx-auto">
-          <div className="mb-8 text-center"><p className="mb-4 text-xs font-black uppercase tracking-[0.28em] text-primary">02 · Tier Switcher</p><h2 className="text-3xl font-black uppercase tracking-wider md:text-5xl">Find Your Potency</h2></div>
-          <div className="mb-8 grid gap-3 md:grid-cols-4">
-            {TIERS.map((tier) => <button key={tier.mg} onClick={() => setActiveMg(tier.mg)} className={`border p-5 text-left transition ${activeTier.mg === tier.mg ? `${tier.bgClass} border-transparent text-primary-foreground` : "border-border bg-card hover:border-primary"}`}><span className="block text-3xl font-black uppercase tracking-wider">{tier.label}</span><span className="mt-2 block text-xs font-bold uppercase tracking-widest opacity-75">{tier.shortName}</span></button>)}
-          </div>
-          <div className={`${activeTier.bgClass} p-5 md:p-8`}>
-            <div className="mb-6 flex flex-col justify-between gap-4 text-primary-foreground md:flex-row md:items-end"><div><p className="text-xs font-black uppercase tracking-[0.28em]">{activeTier.index} · Active</p><h3 className="mt-2 text-4xl font-black uppercase tracking-wider">{activeTier.tagline}</h3></div><p className="max-w-lg text-sm leading-relaxed text-primary-foreground/80">{activeTier.description}</p></div>
-            <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6">{activeTier.products.map((product) => <ProductCard key={product.id} product={product} tier={activeTier} />)}</div>
+      <section className="wf-section">
+        <SectionLabel tag="02 · Tier Switcher" name="Find Your Potency" intent="Intent · one viewport, one active tier. Click a tier → panel below swaps color + flavors. Solves the 24-SKU problem without four stacked full-bleed sections." />
+        <div className="wf-tier-switcher">
+          {TIERS.map((tier) => <button key={tier.mg} onClick={() => setActiveMg(tier.mg)} className={`wf-tier-switch ${activeTier.mg === tier.mg ? tier.bgClass : "bg-transparent"}`}><div className="wf-tier-switch-mg">{tier.label}</div><div className="wf-tier-switch-name">{tier.shortName}</div></button>)}
+        </div>
+        <div className={`${activeTier.bgClass} rounded px-5 py-10 text-background md:px-8`}>
+          <div className="mb-6 flex items-start justify-between gap-6"><div className="flex-1 pt-1.5"><div className="mb-1.5 text-[8px] font-black uppercase tracking-[0.22em] text-background/70">{activeTier.index} · Active</div><h2 className="text-3xl font-black uppercase tracking-wider">{activeTier.tagline}</h2><Line width="80" className="mt-3 bg-background/45" /><Line width="60" className="bg-background/45" /></div><div className="text-[44px] font-black uppercase leading-none tracking-normal">{activeTier.label}</div></div>
+          <div className="wf-flavor-grid">
+            {activeTier.products.map((product) => <Link key={product.id} to={`/products/${product.id}`} className="wf-flavor-card"><div className="wf-flavor-can"><img src={product.image} alt={`${product.flavor} can`} className="h-[76px] w-auto object-contain" /></div><div><div className="wf-flavor-name">{product.flavor}</div><div className="wf-flavor-sub">{product.notes}</div></div></Link>)}
           </div>
         </div>
       </section>
 
-      <section className="bg-muted/50 px-4 py-20">
-        <div className="container mx-auto"><div className="mb-10 text-center"><p className="mb-4 text-xs font-black uppercase tracking-[0.28em] text-primary">03 · Minor Cannabinoids</p><h2 className="text-3xl font-black uppercase tracking-wider md:text-5xl">Find Your Effect</h2></div><div className="grid gap-5 md:grid-cols-3">{CANNABINOIDS.map((item) => <div key={item.name} className="border border-border bg-card p-8 text-center"><p className="mb-4 text-xs font-black uppercase tracking-[0.28em] text-primary">{item.mood}</p><h3 className="text-5xl font-black uppercase tracking-wider">{item.name}</h3><p className="mt-5 text-sm text-muted-foreground">{item.detail}</p></div>)}</div></div>
+      <section className="wf-section">
+        <SectionLabel tag="03 · Minor Cannabinoids" name="Find Your Effect" intent="Intent · educational strip for the cannabinoid variants. Each variant carries a canonical color. Quiet explainer — not a shopping nav." />
+        <Line width="70" />
+        <div className="wf-cannabinoid-grid">
+          {CANNABINOIDS.map((item, i) => <div key={item.name} className={`wf-cannabinoid-card ${i === 0 ? "bg-tier-60" : i === 1 ? "bg-foreground" : "bg-tier-5"}`}><div><div className="text-[8px] font-black uppercase tracking-[0.22em] text-background/75">{item.mood}</div><div className="my-2 text-[28px] font-black uppercase leading-none tracking-normal">{item.name}</div><Line width="90" className="bg-background/40" /><Line width="80" className="bg-background/40" /></div><div className="text-[7px] font-bold uppercase tracking-[0.16em] text-background/65">{item.detail}</div></div>)}
+        </div>
       </section>
 
-      <section className="overflow-hidden bg-primary py-6 text-primary-foreground"><div className="flex min-w-max gap-8 px-4 text-xs font-black uppercase tracking-[0.25em]">{[...ATTRIBUTES, ...ATTRIBUTES].map((item, index) => <span key={`${item}-${index}`}>{item}</span>)}</div></section>
+      <section className="wf-ticker"><div className="wf-section-tag text-background/40">04 · Ticker</div><div className="wf-ticker-track">{ATTRIBUTES.map((item) => <span key={item} className="contents"><span>{item}</span><span className="wf-dot" /></span>)}</div></section>
 
-      <section className="px-4 py-20 text-center"><p className="mb-4 text-xs font-black uppercase tracking-[0.28em] text-primary">05 · Transparency</p><h2 className="text-3xl font-black uppercase tracking-wider md:text-5xl">What’s Inside</h2><div className="mt-8 flex justify-center gap-3"><Link to="/#inside"><Button variant="outline" className="rounded-none">See Full Ingredient Breakdown →</Button></Link><Button className="rounded-none bg-primary text-primary-foreground">Download COAs →</Button></div></section>
-
-      <section className="bg-primary px-4 py-16 text-center text-primary-foreground"><h2 className="text-3xl font-black uppercase tracking-wider md:text-5xl">Ready for a conversation?</h2><div className="mt-8 flex justify-center gap-3"><Button className="rounded-none bg-primary-foreground text-primary hover:bg-primary-foreground/90">Shop Now →</Button><Link to="/near-you"><Button variant="outline" className="rounded-none border-primary-foreground text-primary-foreground hover:bg-primary-foreground/10">Find Near You →</Button></Link></div></section>
-      <Footer />
-    </div>
+      <section className="wf-section"><SectionLabel tag="05 · Transparency" name="What's Inside" intent="Intent · small anchor to Home's What's Inside section. Compliance + transparency as a hyperlinked promise, not a duplicate block." /><Line kind="head" width="70" /><Line width="80" className="mt-2" /><Line width="70" /><div className="mt-4 flex flex-wrap gap-2"><Link to="/#inside" className="wf-btn wf-btn-ghost">See Full Ingredient Breakdown →</Link><span className="wf-btn wf-btn-ghost">Download COAs →</span></div></section>
+      <PathToPurchase tag="06 · Path to Purchase" />
+    </PageShell>
   );
 };
 export default Products;
